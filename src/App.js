@@ -22,7 +22,7 @@ function App() {
       <Subtitle>
         {`UI components for embeddable staking. `}
         <Link
-          href="https://github.com/guillaumegaluz/figment-elements"
+          href="https://github.com/figment-networks/elements"
           target="_blank"
         >
           View on <GithubOutlined />
