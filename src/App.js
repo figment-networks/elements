@@ -5,12 +5,13 @@ import { Radio } from "antd";
 import { GithubOutlined } from "@ant-design/icons";
 
 const options = [
-  { label: "Staking Widget Only", value: "staking" },
-  { label: "Full Dapp", value: "dapp" },
+  { label: "Staking Widget (ETH)", value: "staking-eth" },
+  { label: "Staking Widget (Babylon)", value: "staking-btc" },
+  { label: "Full Dapp (ETH)", value: "dapp" },
 ];
 
 function App() {
-  const [value, setValue] = useState("staking");
+  const [value, setValue] = useState("staking-eth");
 
   const onChange = ({ target: { value } }) => {
     setValue(value);
@@ -36,15 +37,30 @@ function App() {
         buttonStyle="solid"
         size="large"
       />
-      {value === "staking" ? (
-        <StakingContainer>
-          <Staking />
-        </StakingContainer>
-      ) : (
-        <DappContainer>
-          <Dapp />
-        </DappContainer>
-      )}
+      {(() => {
+        switch (value) {
+          case "staking-eth":
+            return (
+              <StakingContainer>
+                <Staking />
+              </StakingContainer>
+            );
+          case "staking-btc":
+            return (
+              <StakingContainer>
+                <Staking protocol="babylon" />
+              </StakingContainer>
+            );
+          case "dapp":
+            return (
+              <DappContainer>
+                <Dapp />
+              </DappContainer>
+            );
+          default:
+            return null;
+        }
+      })()}
     </Container>
   );
 }
