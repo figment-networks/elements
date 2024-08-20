@@ -6,7 +6,7 @@ import { GithubOutlined } from "@ant-design/icons";
 
 const options = [
   { label: "ETH", value: "staking-eth" },
-  { label: "Babylon", value: "staking-btc" },
+  { label: "BTC (Babylon)", value: "staking-btc" },
   // { label: "Full Dapp (ETH)", value: "dapp" },
 ];
 
