@@ -5,8 +5,8 @@ import { Radio } from "antd";
 import { GithubOutlined } from "@ant-design/icons";
 
 const options = [
-  { label: "Ethereum", value: "staking-eth" },
-  { label: "Bitcoin (Babylon)", value: "staking-btc" },
+  { label: "ETH", value: "staking-eth" },
+  { label: "BTC (Babylon)", value: "staking-btc" },
   // { label: "Full Dapp (ETH)", value: "dapp" },
 ];
 
