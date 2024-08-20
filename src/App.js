@@ -5,9 +5,9 @@ import { Radio } from "antd";
 import { GithubOutlined } from "@ant-design/icons";
 
 const options = [
-  { label: "Staking Widget (ETH)", value: "staking-eth" },
-  { label: "Staking Widget (Babylon)", value: "staking-btc" },
-  { label: "Full Dapp (ETH)", value: "dapp" },
+  { label: "ETH", value: "staking-eth" },
+  { label: "Babylon", value: "staking-btc" },
+  // { label: "Full Dapp (ETH)", value: "dapp" },
 ];
 
 function App() {
@@ -51,12 +51,12 @@ function App() {
                 <Staking protocol="babylon" />
               </StakingContainer>
             );
-          case "dapp":
-            return (
-              <DappContainer>
-                <Dapp />
-              </DappContainer>
-            );
+          // case "dapp":
+          //   return (
+          //     <DappContainer>
+          //       <Dapp />
+          //     </DappContainer>
+          //   );
           default:
             return null;
         }
