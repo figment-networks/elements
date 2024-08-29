@@ -29,6 +29,9 @@ function App() {
           View on <GithubOutlined />
         </Link>
       </Subtitle>
+      <MainnetNote>
+        Note: this is a demo, so mainnet staking is disabled.
+      </MainnetNote>
       <Toggle
         options={options}
         onChange={onChange}
@@ -42,13 +45,13 @@ function App() {
           case "staking-eth":
             return (
               <StakingContainer>
-                <Staking />
+                <Staking isTestnetMode />
               </StakingContainer>
             );
           case "staking-btc":
             return (
               <StakingContainer>
-                <Staking protocol="babylon" />
+                <Staking protocol="babylon" isTestnetMode />
               </StakingContainer>
             );
           // case "dapp":
@@ -92,7 +95,14 @@ const Link = styled.a`
 `;
 
 const Toggle = styled(Radio.Group)`
-  margin-bottom: 50px;
+  margin-bottom: 20px;
+`;
+
+const MainnetNote = styled.p`
+  margin-bottom: 20px;
+  font-style: italic;
+  color: #555;
+  font-size: 12px;
 `;
 
 const StakingContainer = styled.div`
