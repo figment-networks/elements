@@ -5022,6 +5022,11 @@ fb-watchman@^2.0.0:
   dependencies:
     bser "2.1.1"
 
+figment-elements@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/figment-elements/-/figment-elements-1.2.0.tgz#9524a98c8a779778b058bf0e5f0498e27705d5f8"
+  integrity sha512-1KuJB/Ww4sWQd9/Pby6J0jj7hcYQ/0MysBJHNnmkyGyPKfgGIZ3MAm3icRgqFl6bnW1PulZA+1B2vNq5L5jQ2A==
+
 file-entry-cache@^6.0.1:
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/file-entry-cache/-/file-entry-cache-6.0.1.tgz#211b2dd9659cb0394b073e7323ac3c933d522027"
