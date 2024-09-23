@@ -1,11 +1,9 @@
-# Demo App
+## Getting Started
 
-## Run
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-```
+```bash
 pnpm i
 
 pnpm dev
 ```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
