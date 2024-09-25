@@ -1,1 +1,1 @@
-declare module "figment-elements";
+declare module "@figmentio/elements";

@@ -24,21 +24,21 @@ We build Figment Elements to help you integrate staking in a matter of minutes, 
 # Usage
 
 ```bash
-pnpm i figment-elements
+pnpm i @figmentio/elements
 
 # OR
 
-yarn add figment-elements
+yarn add @figmentio/elements
 
 # OR
 
-npm i figment-elements
+npm i @figmentio/elements
 ```
 
 ### Using React
 
 ```jsx
-import { Staking, Dapp } from "figment-elements";
+import { Staking, Dapp } from "@figmentio/elements";
 
 ...
 
@@ -98,6 +98,10 @@ React.useEffect(() => {
 
 ## Development
 
-Make changes, and build with `pnpm build`. Then, link the package in your project using your chosen package manager.
+Make changes, and build with `pnpm build`. Then, link the package in your project using your chosen package manager to test the changes.
 
-To publish, make sure to bump the version in the `package.json` and then commit and push your changes. Once that's done, run `npm publish`.
+To publish, make sure to bump the version in the `package.json` and then commit and push your changes. Once that's done, run:
+
+```bash
+npm publish --access public
+```

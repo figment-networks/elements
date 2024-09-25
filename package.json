@@ -1,5 +1,5 @@
 {
-  "name": "figment-elements",
+  "name": "@figmentio/elements",
   "version": "1.2.0",
   "description": "Install and import Figment Elements directly to your project to gain access to Figment's functionality, such as staking.",
   "type": "module",
@@ -8,6 +8,10 @@
   "files": [
     "dist"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/figment-networks/elements.git"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rollup --config"

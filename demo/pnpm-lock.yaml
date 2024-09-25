@@ -8,12 +8,12 @@ dependencies:
   '@ant-design/icons':
     specifier: ^5.4.0
     version: 5.5.1(react-dom@18.3.1)(react@18.3.1)
+  '@figmentio/elements':
+    specifier: ~1.2.0
+    version: 1.2.0
   antd:
     specifier: ^5.19.3
     version: 5.20.6(react-dom@18.3.1)(react@18.3.1)
-  figment-elements:
-    specifier: ~1.2.0
-    version: 1.2.0
   next:
     specifier: 14.2.12
     version: 14.2.12(react-dom@18.3.1)(react@18.3.1)
@@ -189,6 +189,10 @@ packages:
     resolution: {integrity: sha512-d9zaMRSTIKDLhctzH12MtXvJKSSUhaHcjV+2Z+GK+EEY7XKpP5yR4x+N3TAcHTcu963nIr+TMcCb4DBCYX1z6Q==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
+
+  /@figmentio/elements@1.2.0:
+    resolution: {integrity: sha512-e7vnV2NAWjbabnAfHWWzzlQ6zt0TYWXsJ8OkRE7RbpD6k5V51QJ/Pwy5FzOcvuQG4rhSfai6gZRvkFyTCQfF4w==}
+    dev: false
 
   /@humanwhocodes/config-array@0.13.0:
     resolution: {integrity: sha512-DZLEEqFWQFiyK6h5YIeynKx7JlvCYWL0cImfSRXZ9l4Sg2efkFGTuFf6vzXjK1cq6IYkU+Eg/JizXw+TD2vRNw==}
@@ -1652,10 +1656,6 @@ packages:
     dependencies:
       reusify: 1.0.4
     dev: true
-
-  /figment-elements@1.2.0:
-    resolution: {integrity: sha512-1KuJB/Ww4sWQd9/Pby6J0jj7hcYQ/0MysBJHNnmkyGyPKfgGIZ3MAm3icRgqFl6bnW1PulZA+1B2vNq5L5jQ2A==}
-    dev: false
 
   /file-entry-cache@6.0.1:
     resolution: {integrity: sha512-7Gps/XWymbLk2QLYK4NzpMOrYjMhdIxXuIvy2QBsLE6ljuodKvdkWs/cpyJJ3CVIVpH0Oi1Hvg1ovbMzLdFBBg==}

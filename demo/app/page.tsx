@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Radio } from "antd";
 import { GithubOutlined } from "@ant-design/icons";
-import { Staking } from "figment-elements";
+import { Staking } from "@figmentio/elements";
 
 const options = [
   { label: "ETH", value: "staking-eth" },

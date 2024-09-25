@@ -10,8 +10,8 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.4.0",
+    "@figmentio/elements": "~1.2.0",
     "antd": "^5.19.3",
-    "figment-elements": "~1.2.0",
     "next": "14.2.12",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
