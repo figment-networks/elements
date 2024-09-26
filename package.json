@@ -1,45 +1,39 @@
 {
-  "name": "figment-widget-demo",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@ant-design/icons": "^5.4.0",
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "antd": "^5.19.3",
-    "figment-elements": "^1.2.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-scripts": "5.0.1",
-    "styled-components": "^6.1.11",
-    "web-vitals": "^2.1.4"
+  "name": "@figmentio/elements",
+  "version": "1.2.0",
+  "description": "Install and import Figment Elements directly to your project to gain access to Figment's functionality, such as staking.",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/figment-networks/elements.git"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rollup --config"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+    "@babel/preset-react": "~7.24.7",
+    "@rollup/plugin-babel": "~6.0.4",
+    "@rollup/plugin-commonjs": "~26.0.1",
+    "@rollup/plugin-node-resolve": "~15.2.3",
+    "@rollup/plugin-terser": "~0.4.4",
+    "@rollup/plugin-typescript": "~11.1.6",
+    "@types/react": "~18.2.0",
+    "babel-core": "~6.26.3",
+    "babel-loader": "~9.1.3",
+    "react": "~18.2.0",
+    "react-dom": "~18.2.0",
+    "rollup": "~4.18.1",
+    "rollup-plugin-peer-deps-external": "~2.2.4",
+    "tslib": "~2.6.3",
+    "typescript": "~5.3.3"
   }
 }
