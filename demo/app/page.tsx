@@ -17,6 +17,10 @@ export default function Home() {
     setValue(e.target.value || "");
   };
 
+  if (!process.env.NEXT_PUBLIC_DAPP_TOKEN) {
+    throw new Error("Missing process.env.NEXT_PUBLIC_DAPP_TOKEN");
+  }
+
   return (
     <div className="min-h-screen bg-zinc-200 text-center flex flex-col items-center">
       <h1 className="text-3xl font-semibold pt-8">Figment Elements</h1>
@@ -44,9 +48,19 @@ export default function Home() {
         className="mb-5"
       />
       <div className="w-[350px] h-[450px]">
-        {value === "staking-eth" && <Staking isTestnetMode />}
+        {value === "staking-eth" && (
+          <Staking
+            isTestnetMode
+            protocol="ethereum"
+            dappToken={process.env.NEXT_PUBLIC_DAPP_TOKEN}
+          />
+        )}
         {value === "staking-btc" && (
-          <Staking protocol="babylon" isTestnetMode />
+          <Staking
+            isTestnetMode
+            protocol="babylon"
+            dappToken={process.env.NEXT_PUBLIC_DAPP_TOKEN}
+          />
         )}
       </div>
     </div>
