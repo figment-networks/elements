@@ -5,7 +5,7 @@ import { PostMessageType, StakingProps } from "./types";
 const Staking: React.FC<StakingProps> = ({
   protocol = "ethereum",
   network,
-  dappToken,
+  appId,
   wallet,
   isTestnetMode = false,
 }) => {
@@ -95,7 +95,7 @@ const Staking: React.FC<StakingProps> = ({
 
   return (
     <iframe
-      src={`https://dapp.figment.io/elements/staking/${protocol}?isTestnetMode=${isTestnetMode}&isCustomWallet=${!!wallet}&dappToken=${dappToken}`}
+      src={`https://dapp.figment.io/elements/staking/${protocol}?isTestnetMode=${isTestnetMode}&isCustomWallet=${!!wallet}&dappToken=${appId}`}
       style={style}
       ref={iframeRef}
       onLoad={() => {

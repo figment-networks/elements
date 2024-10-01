@@ -8,7 +8,10 @@ import { Staking } from "@figmentio/elements";
 const options = [
   { label: "ETH", value: "staking-eth" },
   { label: "BTC (Babylon)", value: "staking-btc" },
-  { label: "BTC (Babylon) - Custom Wallet", value: "staking-btc-custom" },
+  // {
+  //   label: "BTC (Babylon) - Custom Wallet (Tomo)",
+  //   value: "staking-btc-custom",
+  // },
 ];
 
 export default function Home() {
@@ -52,21 +55,21 @@ export default function Home() {
         {value === "staking-eth" && (
           <Staking
             isTestnetMode
-            dappToken={process.env.NEXT_PUBLIC_DAPP_TOKEN}
+            appId={process.env.NEXT_PUBLIC_DAPP_TOKEN}
             protocol="ethereum"
           />
         )}
         {value === "staking-btc" && (
           <Staking
             isTestnetMode
-            dappToken={process.env.NEXT_PUBLIC_DAPP_TOKEN}
+            appId={process.env.NEXT_PUBLIC_DAPP_TOKEN}
             protocol="babylon"
           />
         )}
         {value === "staking-btc-custom" && (
           <Staking
             isTestnetMode
-            dappToken={process.env.NEXT_PUBLIC_DAPP_TOKEN}
+            appId={process.env.NEXT_PUBLIC_DAPP_TOKEN}
             protocol="babylon"
             network="signet"
             wallet={{

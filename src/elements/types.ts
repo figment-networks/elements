@@ -26,7 +26,7 @@ type ProtocolToNetworkMap = {
 };
 
 type BaseStakingProps = {
-  dappToken: string;
+  appId: string;
   protocol: keyof typeof Protocol;
   isTestnetMode?: boolean;
 };
