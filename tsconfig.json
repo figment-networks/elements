@@ -11,6 +11,8 @@
     "moduleResolution": "node",
     "paths": {
       "react": ["./node_modules/@types/react"]
-    }
+    },
+    "declaration": true,
+    "declarationDir": "dist/types"
   }
 }

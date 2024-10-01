@@ -9,8 +9,8 @@ dependencies:
     specifier: ^5.4.0
     version: 5.5.1(react-dom@18.3.1)(react@18.3.1)
   '@figmentio/elements':
-    specifier: ~1.2.0
-    version: 1.2.0
+    specifier: ~1.3.0
+    version: 1.3.0
   antd:
     specifier: ^5.19.3
     version: 5.20.6(react-dom@18.3.1)(react@18.3.1)
@@ -190,8 +190,8 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
 
-  /@figmentio/elements@1.2.0:
-    resolution: {integrity: sha512-e7vnV2NAWjbabnAfHWWzzlQ6zt0TYWXsJ8OkRE7RbpD6k5V51QJ/Pwy5FzOcvuQG4rhSfai6gZRvkFyTCQfF4w==}
+  /@figmentio/elements@1.3.0:
+    resolution: {integrity: sha512-UhRIWQjMnejY1KCpR9rQgbkpbvXvx1F2IMwP921/6eIcdInrdjGm1gBpkEY3l5exnaxAvlR0CcTkWKKV+Hj7gg==}
     dev: false
 
   /@humanwhocodes/config-array@0.13.0:
