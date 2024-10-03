@@ -8,7 +8,7 @@ We build Figment Elements to help you integrate staking in a matter of minutes, 
 
 Make changes, and build with `pnpm build`. Then, link the package in your project using your chosen package manager to test the changes.
 
-To publish, make sure to bump the version in the `package.json` and then commit and push your changes. Once that's done, run:
+To publish, first run `pnpm build` to build the dist files, then make sure to bump the version in the `package.json` and then commit and push your changes. Once that's done, run:
 
 ```bash
 npm publish --access public
