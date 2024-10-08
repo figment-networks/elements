@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Radio } from "antd";
 import { GithubOutlined } from "@ant-design/icons";
 import { Staking } from "@figmentio/elements";
@@ -8,14 +8,35 @@ import { Staking } from "@figmentio/elements";
 const options = [
   { label: "ETH", value: "staking-eth" },
   { label: "BTC (Babylon)", value: "staking-btc" },
-  // {
-  //   label: "BTC (Babylon) - Custom Wallet (Tomo)",
-  //   value: "staking-btc-custom",
-  // },
+  {
+    label: "BTC (Babylon) - Custom Wallet (Tomo)",
+    value: "staking-btc-custom",
+  },
 ];
 
 export default function Home() {
   const [value, setValue] = useState("staking-eth");
+  const [wallet, setWallet] = useState({
+    address: "",
+    publicKey: "",
+  });
+
+  useEffect(() => {
+    const fetchWallet = async () => {
+      const tomowallet = window.tomo_btc;
+      const addresses = await tomowallet?.requestAccounts();
+      const publicKey = await tomowallet?.getPublicKey();
+
+      console.log({ address: addresses[0], publicKey });
+
+      setWallet({
+        address: addresses[0],
+        publicKey,
+      });
+    };
+
+    fetchWallet();
+  }, []);
 
   const onChange = (e: { target: { value?: string } }) => {
     setValue(e.target.value || "");
@@ -73,10 +94,8 @@ export default function Home() {
             protocol="babylon"
             network="signet"
             wallet={{
-              address:
-                "tb1puj9ah6qt2anajsw7jg68rdlcxx327kfeen4ajgp78knkskk23rdsmmdy8t",
-              publicKey:
-                "020e3169a562edff609fff553c1861ed11751756f49ef78600f5f0821a023b8139",
+              address: wallet.address,
+              publicKey: wallet.publicKey,
               signMessage: async (message: string) => {
                 const signature = await window?.tomo_btc?.signMessage(
                   message,
