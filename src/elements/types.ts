@@ -1,6 +1,7 @@
 enum Protocol {
   ethereum = "ethereum",
   babylon = "babylon",
+  solana = "solana",
 }
 
 enum EthereumNetwork {
@@ -13,6 +14,11 @@ enum BabylonNetwork {
   signet = "signet",
 }
 
+enum SolanaNetwork {
+  mainnet = "mainnet",
+  devnet = "devnet",
+}
+
 export type CustomWalletConfig = {
   address: string;
   publicKey: string;
@@ -23,6 +29,7 @@ export type CustomWalletConfig = {
 type ProtocolToNetworkMap = {
   [Protocol.ethereum]: keyof typeof EthereumNetwork;
   [Protocol.babylon]: keyof typeof BabylonNetwork;
+  [Protocol.solana]: keyof typeof SolanaNetwork;
 };
 
 type BaseStakingProps = {
@@ -43,6 +50,12 @@ type StakingPropsWithWalletBabylon = BaseStakingProps & {
   wallet: CustomWalletConfig;
 };
 
+type StakingPropsWithWalletSolana = BaseStakingProps & {
+  protocol: "solana";
+  network: ProtocolToNetworkMap[Protocol.solana];
+  wallet: CustomWalletConfig;
+};
+
 type StakingPropsWithoutWalletEthereum = BaseStakingProps & {
   protocol: "ethereum";
   network?: ProtocolToNetworkMap[Protocol.ethereum];
@@ -55,11 +68,19 @@ type StakingPropsWithoutWalletBabylon = BaseStakingProps & {
   wallet?: undefined;
 };
 
+type StakingPropsWithoutWalletSolana = BaseStakingProps & {
+  protocol: "solana";
+  network?: ProtocolToNetworkMap[Protocol.solana];
+  wallet?: undefined;
+};
+
 export type StakingProps =
   | StakingPropsWithWalletEthereum
   | StakingPropsWithWalletBabylon
+  | StakingPropsWithWalletSolana
   | StakingPropsWithoutWalletEthereum
-  | StakingPropsWithoutWalletBabylon;
+  | StakingPropsWithoutWalletBabylon
+  | StakingPropsWithoutWalletSolana;
 
 export enum PostMessageType {
   FIGMENT_SIGN_MESSAGE = "FIGMENT_SIGN_MESSAGE",
