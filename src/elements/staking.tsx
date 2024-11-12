@@ -1,6 +1,10 @@
 import React, { useEffect, useRef } from "react";
 import { style } from "./style";
-import { PostMessageType, StakingProps } from "./types";
+import {
+  BabylonCustomWalletConfig,
+  PostMessageType,
+  StakingProps,
+} from "./types";
 
 const Staking: React.FC<StakingProps> = ({
   protocol = "ethereum",
@@ -88,8 +92,12 @@ const Staking: React.FC<StakingProps> = ({
   const iframeWalletConfig = wallet
     ? JSON.stringify({
         address: wallet.address,
-        publicKey: wallet.publicKey,
         network,
+        ...(protocol === "babylon"
+          ? {
+              publicKey: (wallet as BabylonCustomWalletConfig).publicKey,
+            }
+          : {}),
       })
     : undefined;
 
