@@ -19,9 +19,15 @@ enum SolanaNetwork {
   devnet = "devnet",
 }
 
-export type CustomWalletConfig = {
+export type BabylonCustomWalletConfig = {
   address: string;
   publicKey: string;
+  signTransaction: (transaction: string) => Promise<string>;
+  signMessage: (message: string) => Promise<string>;
+};
+
+export type SolanaCustomWalletConfig = {
+  address: string;
   signTransaction: (transaction: string) => Promise<string>;
   signMessage: (message: string) => Promise<string>;
 };
@@ -38,22 +44,22 @@ type BaseStakingProps = {
   isTestnetMode?: boolean;
 };
 
-type StakingPropsWithWalletEthereum = BaseStakingProps & {
-  protocol: "ethereum";
-  network: ProtocolToNetworkMap[Protocol.ethereum];
-  wallet: CustomWalletConfig;
-};
+// type StakingPropsWithWalletEthereum = BaseStakingProps & {
+//   protocol: "ethereum";
+//   network: ProtocolToNetworkMap[Protocol.ethereum];
+//   wallet: CustomWalletConfig;
+// };
 
 type StakingPropsWithWalletBabylon = BaseStakingProps & {
   protocol: "babylon";
   network: ProtocolToNetworkMap[Protocol.babylon];
-  wallet: CustomWalletConfig;
+  wallet: BabylonCustomWalletConfig;
 };
 
 type StakingPropsWithWalletSolana = BaseStakingProps & {
   protocol: "solana";
   network: ProtocolToNetworkMap[Protocol.solana];
-  wallet: CustomWalletConfig;
+  wallet: SolanaCustomWalletConfig;
 };
 
 type StakingPropsWithoutWalletEthereum = BaseStakingProps & {
@@ -75,7 +81,8 @@ type StakingPropsWithoutWalletSolana = BaseStakingProps & {
 };
 
 export type StakingProps =
-  | StakingPropsWithWalletEthereum
+  // Once we enable custom wallets for Ethereum, we can uncomment this
+  // | StakingPropsWithWalletEthereum
   | StakingPropsWithWalletBabylon
   | StakingPropsWithWalletSolana
   | StakingPropsWithoutWalletEthereum
