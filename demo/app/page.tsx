@@ -1,21 +1,74 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Radio } from "antd";
 import { GithubOutlined } from "@ant-design/icons";
+import { Transaction } from "@solana/web3.js";
 import { Staking } from "@figmentio/elements";
 
 const options = [
   { label: "ETH", value: "staking-eth" },
   { label: "BTC (Babylon)", value: "staking-btc" },
-  // {
-  //   label: "BTC (Babylon) - Custom Wallet (Tomo)",
-  //   value: "staking-btc-custom",
-  // },
+  ...(typeof window !== "undefined" && window?.tomo_btc
+    ? [
+        {
+          label: "BTC (Babylon) - Custom Wallet (Tomo)",
+          value: "staking-btc-custom",
+        },
+      ]
+    : []),
+
+  { label: "SOL", value: "staking-sol" },
+  ...(typeof window !== "undefined" && window.phantom?.solana
+    ? [
+        {
+          label: "SOL - Custom Wallet (Phantom)",
+          value: "staking-sol-custom",
+        },
+      ]
+    : []),
 ];
 
 export default function Home() {
   const [value, setValue] = useState("staking-eth");
+  const [wallet, setWallet] = useState<{
+    address: string;
+    publicKey: string;
+  }>({
+    address: "",
+    publicKey: "",
+  });
+
+  useEffect(() => {
+    const fetchWallet = async () => {
+      if (value === "staking-btc-custom") {
+        const tomo = window.tomo_btc;
+
+        if (!tomo) throw new Error("Failed to get tomo");
+
+        const addresses = await tomo.requestAccounts();
+        const publicKey = await tomo.getPublicKey();
+
+        setWallet({
+          address: addresses[0],
+          publicKey,
+        });
+      } else if (value === "staking-sol-custom") {
+        const phantom = window.phantom?.solana;
+
+        if (!phantom) throw new Error("Failed to get phantom");
+
+        const resp = await phantom.connect();
+
+        setWallet({
+          address: resp.publicKey.toString(),
+          publicKey: "",
+        });
+      }
+    };
+
+    fetchWallet();
+  }, [value]);
 
   const onChange = (e: { target: { value?: string } }) => {
     setValue(e.target.value || "");
@@ -73,10 +126,8 @@ export default function Home() {
             protocol="babylon"
             network="signet"
             wallet={{
-              address:
-                "tb1puj9ah6qt2anajsw7jg68rdlcxx327kfeen4ajgp78knkskk23rdsmmdy8t",
-              publicKey:
-                "020e3169a562edff609fff553c1861ed11751756f49ef78600f5f0821a023b8139",
+              address: wallet.address,
+              publicKey: wallet?.publicKey,
               signMessage: async (message: string) => {
                 const signature = await window?.tomo_btc?.signMessage(
                   message,
@@ -89,6 +140,62 @@ export default function Home() {
                 const signedTx = await window?.tomo_btc?.signPsbt(transaction);
                 if (!signedTx) throw new Error("Failed to sign transaction");
                 return signedTx;
+              },
+            }}
+          />
+        )}
+        {value === "staking-sol" && (
+          <>
+            <p className="mb-5 italic text-gray-600 text-sm">
+              Note: Phantom doesn&apos;t work in iframes (by design). Check out
+              the custom wallet integration to see that work.
+            </p>
+            <Staking
+              isTestnetMode
+              appId={process.env.NEXT_PUBLIC_DAPP_TOKEN}
+              protocol="solana"
+            />
+          </>
+        )}
+        {value === "staking-sol-custom" && (
+          <Staking
+            isTestnetMode
+            appId={process.env.NEXT_PUBLIC_DAPP_TOKEN}
+            protocol="solana"
+            network="devnet"
+            wallet={{
+              address: wallet.address,
+              signMessage: async (message: string) => {
+                const provider = window?.phantom?.solana;
+
+                if (!provider) throw new Error("Failed to get provider");
+
+                const encodedMessage = new TextEncoder().encode(message);
+                const signedMessage = await provider.signMessage(
+                  encodedMessage,
+                  "utf8"
+                );
+
+                const signature = Buffer.from(signedMessage.signature).toString(
+                  "base64"
+                );
+
+                if (!signature) throw new Error("Failed to sign message");
+
+                return signature;
+              },
+              signTransaction: async (transaction: string) => {
+                const provider = window?.phantom?.solana;
+
+                if (!provider) throw new Error("Failed to get provider");
+
+                const tx = Transaction.from(Buffer.from(transaction, "hex"));
+
+                const { signature } = await provider.signAndSendTransaction(tx);
+
+                if (!signature) throw new Error("Failed to sign transaction");
+
+                return signature;
               },
             }}
           />
