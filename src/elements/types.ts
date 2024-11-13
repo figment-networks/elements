@@ -38,6 +38,11 @@ type ProtocolToNetworkMap = {
   [Protocol.solana]: keyof typeof SolanaNetwork;
 };
 
+export type ProtocolToWalletConfigMap = {
+  [Protocol.babylon]: BabylonCustomWalletConfig;
+  [Protocol.solana]: SolanaCustomWalletConfig;
+};
+
 type BaseStakingProps = {
   appId: string;
   protocol: keyof typeof Protocol;
@@ -53,13 +58,13 @@ type BaseStakingProps = {
 type StakingPropsWithWalletBabylon = BaseStakingProps & {
   protocol: "babylon";
   network: ProtocolToNetworkMap[Protocol.babylon];
-  wallet: BabylonCustomWalletConfig;
+  wallet: ProtocolToWalletConfigMap[Protocol.babylon];
 };
 
 type StakingPropsWithWalletSolana = BaseStakingProps & {
   protocol: "solana";
   network: ProtocolToNetworkMap[Protocol.solana];
-  wallet: SolanaCustomWalletConfig;
+  wallet: ProtocolToWalletConfigMap[Protocol.solana];
 };
 
 type StakingPropsWithoutWalletEthereum = BaseStakingProps & {
