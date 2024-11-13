@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.4.0",
-    "@figmentio/elements": "~1.4.0",
+    "@figmentio/elements": "~1.4.2",
     "@solana/web3.js": "~1.95.4",
     "antd": "^5.19.3",
     "next": "14.2.12",

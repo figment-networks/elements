@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { Radio } from "antd";
 import { GithubOutlined } from "@ant-design/icons";
 import { Transaction } from "@solana/web3.js";
-import { Staking } from "@figmentio/elements/dist/index.es";
+import { Staking } from "@figmentio/elements";
 
 const options = [
   { label: "ETH", value: "staking-eth" },
@@ -30,7 +30,7 @@ const options = [
 ];
 
 export default function Home() {
-  const [value, setValue] = useState("staking-sol-custom");
+  const [value, setValue] = useState("staking-eth");
   const [wallet, setWallet] = useState<{
     address: string;
     publicKey: string;
@@ -165,7 +165,6 @@ export default function Home() {
             network="devnet"
             wallet={{
               address: wallet.address,
-              publicKey: wallet?.publicKey,
               signMessage: async (message: string) => {
                 const provider = window?.phantom?.solana;
 
