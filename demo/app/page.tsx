@@ -119,7 +119,7 @@ export default function Home() {
             protocol="babylon"
           />
         )}
-        {value === "staking-btc-custom" && (
+        {value === "staking-btc-custom" && wallet.address && (
           <Staking
             isTestnetMode
             appId={process.env.NEXT_PUBLIC_DAPP_TOKEN}
@@ -157,7 +157,7 @@ export default function Home() {
             />
           </>
         )}
-        {value === "staking-sol-custom" && (
+        {value === "staking-sol-custom" && wallet.address && (
           <Staking
             isTestnetMode
             appId={process.env.NEXT_PUBLIC_DAPP_TOKEN}
