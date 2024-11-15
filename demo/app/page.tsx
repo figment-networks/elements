@@ -70,6 +70,8 @@ export default function Home() {
     fetchWallet();
   }, [value]);
 
+  console.log({ wallet });
+
   const onChange = (e: { target: { value?: string } }) => {
     setValue(e.target.value || "");
   };
