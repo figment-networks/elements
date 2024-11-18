@@ -6,6 +6,8 @@ import { GithubOutlined } from "@ant-design/icons";
 import { Transaction } from "@solana/web3.js";
 import { Staking } from "@figmentio/elements";
 
+console.log("HI");
+
 const options = [
   { label: "ETH", value: "staking-eth" },
   { label: "BTC (Babylon)", value: "staking-btc" },
