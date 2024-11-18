@@ -16,7 +16,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rollup --config",
-    "changeset:status": "pnpm changeset status",
+    "bump-version": "pnpm changeset add && pnpm changeset version",
     "release": "pnpm build && pnpm changeset publish --dry-run"
   },
   "keywords": [],

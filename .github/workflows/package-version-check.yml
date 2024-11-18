@@ -26,5 +26,5 @@ jobs:
           path: package.json
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - run: echo "Elements code changed but package.json version not updated" && exit 1
+      - run: echo "Elements code changed but package.json version not updated. Please run `bump-version`" && exit 1
         if: ${{steps.version-updated.outputs.has-updated == 'false'}}
