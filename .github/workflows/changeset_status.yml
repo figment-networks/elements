@@ -17,6 +17,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          # check out full history
+          fetch-depth: 0
+
       - uses: pnpm/action-setup@v2.0.1
         with:
           version: 8.7.6
