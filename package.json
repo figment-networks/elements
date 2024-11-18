@@ -1,6 +1,6 @@
 {
   "name": "@figmentio/elements",
-  "version": "1.4.4",
+  "version": "1.4.3",
   "description": "Install and import Figment Elements directly to your project to gain access to Figment's functionality, such as staking.",
   "type": "module",
   "main": "./dist/index.cjs",
