@@ -18,22 +18,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          # check out full history
           fetch-depth: 0
 
-      - uses: pnpm/action-setup@v2.0.1
+      - uses: JiPaix/package-json-updated-action@v1.0.3
+        id: version-updated
         with:
-          version: 8.7.6
-
-      # - name: Setup node
-      #   uses: actions/setup-node@v3
-      #   with:
-      #     node-version: 20
-      #     cache: "pnpm"
-      #     cache-dependency-path: "pnpm-lock.yaml"
-
-      # - name: Install dependencies
-      #   run: pnpm install --frozen-lockfile
-
-      - name: Version Check
-        uses: EndBug/version-check@v2.1.5
+          path: package.json
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: exit 1
+        if: !steps.version-updated.outputs.has-updated
