@@ -1,6 +1,6 @@
 {
   "name": "@figmentio/elements",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "description": "Install and import Figment Elements directly to your project to gain access to Figment's functionality, such as staking.",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -15,7 +15,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rollup --config"
+    "build": "rollup --config",
+    "release": "pnpm build && changeset publish --dry-run"
   },
   "keywords": [],
   "author": "",
@@ -23,6 +24,7 @@
   "devDependencies": {
     "@babel/core": "~7.24.7",
     "@babel/preset-react": "~7.24.7",
+    "@changesets/cli": "~2.27.9",
     "@rollup/plugin-babel": "~6.0.4",
     "@rollup/plugin-commonjs": "~26.0.1",
     "@rollup/plugin-node-resolve": "~15.2.3",
