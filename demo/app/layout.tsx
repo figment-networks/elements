@@ -4,7 +4,7 @@ import "./globals.css";
 import "antd/dist/reset.css";
 
 const geistSans = localFont({
-  src: "./fonts/GeissstVF.woff",
+  src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
   weight: "100 900",
 });
