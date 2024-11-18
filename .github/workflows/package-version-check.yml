@@ -13,6 +13,7 @@ concurrency:
 
 jobs:
   version_update_check:
+    if: ${{ !contains(github.event.pull_request.title, '[skip-version-check]') }}
     name: Check for package.json version update
     runs-on: ubuntu-latest
     steps:
