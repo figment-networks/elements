@@ -38,11 +38,11 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Send a Slack notification if a publish happens
-        if: steps.changesets.outputs.published == 'true'
-        uses: slackapi/slack-github-action@v1.23
-        with:
-          channel-id: "C04NPHF688Y" # The figapp-alerts channel
-          slack-message: "A new version of ${GITHUB_REPOSITORY} was published!"
-        env:
-          SLACK_BOT_TOKEN: ${{ secrets.SLACKBOT_OAUTH_TOKEN }}
+      # - name: Send a Slack notification if a publish happens
+      #   if: steps.changesets.outputs.published == 'true'
+      #   uses: slackapi/slack-github-action@v1.23
+      #   with:
+      #     channel-id: "C04NPHF688Y" # The figapp-alerts channel
+      #     slack-message: "A new version of ${GITHUB_REPOSITORY} was published!"
+      #   env:
+      #     SLACK_BOT_TOKEN: ${{ secrets.SLACKBOT_OAUTH_TOKEN }}
