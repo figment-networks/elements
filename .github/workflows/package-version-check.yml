@@ -27,4 +27,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: exit 1
-        if: ${{!steps.version-updated.outputs.has-updated}}
+        if: steps.version-updated.outputs.has-updated == false
