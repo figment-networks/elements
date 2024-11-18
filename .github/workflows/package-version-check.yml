@@ -15,7 +15,7 @@ jobs:
   version_update_check:
     name: Check for package.json version update
     runs-on: ubuntu-latest
-    if: '!contains(github.event.pull_request.title, "[skip-version-check]"")'
+    if: ${{contains(github.event.pull_request.title, '[skip-version-check]') == false}}
     steps:
       - uses: actions/checkout@v3
         with:
