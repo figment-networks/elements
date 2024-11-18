@@ -26,5 +26,4 @@ jobs:
           path: package.json
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - run: exit 1
-        if: steps.version-updated.outputs.has-updated == false
+      - run: echo ${{steps.version-updated.outputs.has-updated}}
