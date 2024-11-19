@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { style } from "./style";
 import {
   BabylonCustomWalletConfig,
@@ -14,6 +14,7 @@ const Staking: React.FC<StakingProps> = ({
   isTestnetMode = false,
 }) => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
+  const [isIframeReady, setIsIframeReady] = useState(false);
 
   useEffect(() => {
     const handleMessage = async (event: MessageEvent) => {
@@ -24,6 +25,10 @@ const Staking: React.FC<StakingProps> = ({
         )
       )
         return;
+
+      if (event.data.type === PostMessageType.FIGMENT_IFRAME_READY) {
+        setIsIframeReady(true);
+      }
 
       if (
         event.data.type === PostMessageType.FIGMENT_SIGN_MESSAGE &&
@@ -79,6 +84,33 @@ const Staking: React.FC<StakingProps> = ({
     };
   }, []);
 
+  useEffect(() => {
+    if (isIframeReady && wallet) {
+      // This is the wallet config that the iframe will use
+      const iframeWalletConfig = JSON.stringify({
+        address: wallet.address,
+        network,
+        ...(protocol === "babylon"
+          ? {
+              publicKey: (wallet as BabylonCustomWalletConfig).publicKey,
+            }
+          : {}),
+      });
+
+      sendMessageToIframe({
+        type: PostMessageType.FIGMENT_UPDATE_WALLET_CONFIG,
+        walletConfig: iframeWalletConfig,
+      });
+    }
+  }, [
+    isIframeReady,
+    wallet,
+    wallet?.address,
+    (wallet as BabylonCustomWalletConfig)?.publicKey,
+    network,
+    protocol,
+  ]);
+
   const sendMessageToIframe = (message: any) => {
     if (iframeRef.current && iframeRef.current.contentWindow) {
       iframeRef.current.contentWindow.postMessage(
@@ -87,19 +119,6 @@ const Staking: React.FC<StakingProps> = ({
       );
     }
   };
-
-  // This is the wallet config that the iframe will use
-  const iframeWalletConfig = wallet
-    ? JSON.stringify({
-        address: wallet.address,
-        network,
-        ...(protocol === "babylon"
-          ? {
-              publicKey: (wallet as BabylonCustomWalletConfig).publicKey,
-            }
-          : {}),
-      })
-    : undefined;
 
   return (
     <iframe
@@ -111,7 +130,6 @@ const Staking: React.FC<StakingProps> = ({
           () =>
             sendMessageToIframe({
               type: PostMessageType.FIGMENT_PARENT_READY,
-              walletConfig: iframeWalletConfig,
             }),
           1000
         );
