@@ -9,8 +9,8 @@ dependencies:
     specifier: ^5.4.0
     version: 5.5.1(react-dom@18.3.1)(react@18.3.1)
   '@figmentio/elements':
-    specifier: ~1.4.2
-    version: 1.4.2
+    specifier: ~1.4.4
+    version: 1.4.4
   '@solana/web3.js':
     specifier: ~1.95.4
     version: 1.95.4
@@ -193,8 +193,8 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
 
-  /@figmentio/elements@1.4.2:
-    resolution: {integrity: sha512-tyGSaX9sGsmPB7342hm5XjbnEUmI03tlRXJGDNUzGJYfgvYBzgel0V/g2zIBMk5qfeiXT2Sk184u13ig25Jcpg==}
+  /@figmentio/elements@1.4.4:
+    resolution: {integrity: sha512-hWSJYl88XCOzB6Iy9lsQXyPXmmNsvXpSOM9HNHFOrNi48xFIOOIrlHJcME7WClz5Pxp3FxE7Uwg0+1gu2ZgtTg==}
     dev: false
 
   /@humanwhocodes/config-array@0.13.0:
