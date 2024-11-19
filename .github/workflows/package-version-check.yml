@@ -1,0 +1,33 @@
+name: Version Update Check
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "src/**"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  version_update_check:
+    name: Check for package.json version update
+    runs-on: ubuntu-latest
+    if: ${{!contains(github.event.pull_request.title, '[skip-version-check]')}}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - uses: JiPaix/package-json-updated-action@v1.0.3
+        id: version-updated
+        with:
+          path: package.json
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: echo ${{github.event.pull_request.title}}
+
+      - run: echo "Elements code changed but package.json version not updated. Please run pnpm bump-version, or skip this check by adding [skip-version-check] to the PR title and re-pushing." && exit 1
+        if: ${{steps.version-updated.outputs.has-updated == 'false'}}
