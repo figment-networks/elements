@@ -9,9 +9,7 @@ import { Staking } from "@figmentio/elements";
 const options = [
   { label: "ETH", value: "staking-eth" },
   { label: "BTC (Babylon)", value: "staking-btc" },
-  ...(typeof window !== "undefined" &&
-  window.location.origin === "http://localhost:3000" &&
-  window?.tomo_btc
+  ...(typeof window !== "undefined" && window?.tomo_btc
     ? [
         {
           label: "BTC (Babylon) - Custom Wallet (Tomo)",
@@ -21,9 +19,7 @@ const options = [
     : []),
 
   { label: "SOL", value: "staking-sol" },
-  ...(typeof window !== "undefined" &&
-  window.location.origin === "http://localhost:3000" &&
-  window.phantom?.solana
+  ...(typeof window !== "undefined" && window.phantom?.solana
     ? [
         {
           label: "SOL - Custom Wallet (Phantom)",
