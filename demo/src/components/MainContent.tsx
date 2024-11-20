@@ -128,7 +128,7 @@ export function MainContent({
                 UI components for embeddable staking
               </p>
             </div>
-            <div className="my-8 mx-auto w-[350px] h-[393px] overflow-hidden border border-[#ddd] rounded-md">
+            <div className="my-8 mx-auto w-[350px] h-[450px] overflow-hidden">
               {(walletType === "custom" ? wallet.address : true) && (
                 <Staking
                   isTestnetMode
