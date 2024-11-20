@@ -8,17 +8,12 @@ declare global {
       requestAccounts: () => Promise<string[]>;
       getPublicKey: () => Promise<string>;
     };
-    phantom?: {
-      solana?: {
-        signMessage: (
-          message: Uint8Array,
-          encoding: string
-        ) => Promise<{ signature: string }>;
-        signAndSendTransaction: (
-          transaction: Transaction
-        ) => Promise<{ signature: string }>;
-        connect: () => Promise<{ publicKey: PublicKey }>;
-      };
+    solflare?: {
+      connect: () => Promise<void>;
+      disconnect: () => Promise<void>;
+      signMessage: (message: Uint8Array) => Promise<{ signature: Uint8Array }>;
+      signTransaction: (transaction: Transaction) => Promise<Transaction>;
+      publicKey: { toString: () => string } | null;
     };
   }
 }

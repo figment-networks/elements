@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Staking } from "@figmentio/elements";
 import { Transaction } from "@solana/web3.js";
+import Solflare from "@solflare-wallet/sdk";
+import { Buffer } from "buffer";
 import { Protocol, Network } from "../types";
 import { CodePanel } from "./CodePanel";
 
@@ -13,20 +15,10 @@ interface MainContentProps {
 }
 
 export function MainContent({
-  primaryColor,
-  secondaryColor,
   walletType,
   selectedProtocol,
   selectedNetwork,
 }: MainContentProps) {
-  console.log({
-    primaryColor,
-    secondaryColor,
-    walletType,
-    selectedProtocol,
-    selectedNetwork,
-  });
-
   const [wallet, setWallet] = useState<{
     address: string;
     publicKey: string;
@@ -35,40 +27,41 @@ export function MainContent({
     publicKey: "",
   });
 
+  const [solFlareWallet] = useState(new Solflare());
+
   const customWalletConfigMap = {
     solana: {
       address: wallet.address,
       signMessage: async (message: string) => {
-        const provider = window?.phantom?.solana;
+        const solflare = window?.solflare;
 
-        if (!provider) throw new Error("Failed to get provider");
+        if (!solflare) throw new Error("Failed to get Solflare");
 
         const encodedMessage = new TextEncoder().encode(message);
-        const signedMessage = await provider.signMessage(
-          encodedMessage,
-          "utf8"
-        );
+        const { signature } = await solflare.signMessage(encodedMessage);
 
-        const signature = Buffer.from(signedMessage.signature).toString(
-          "base64"
-        );
+        const signatureBase64 = Buffer.from(signature).toString("base64");
 
-        if (!signature) throw new Error("Failed to sign message");
+        if (!signatureBase64) throw new Error("Failed to sign message");
 
-        return signature;
+        return signatureBase64;
       },
-      signTransaction: async (transaction: string) => {
-        const provider = window?.phantom?.solana;
+      signTransaction: async (payload: string) => {
+        try {
+          if (!solFlareWallet) throw new Error("Failed to get Solflare");
 
-        if (!provider) throw new Error("Failed to get provider");
+          const tx = Transaction.from(Buffer.from(payload, "hex"));
 
-        const tx = Transaction.from(Buffer.from(transaction, "hex"));
+          const txSignature: string =
+            await solFlareWallet.signAndSendTransaction(tx);
 
-        const { signature } = await provider.signAndSendTransaction(tx);
+          if (!txSignature) throw new Error("Failed to sign transaction");
 
-        if (!signature) throw new Error("Failed to sign transaction");
-
-        return signature;
+          return txSignature || "";
+        } catch (error) {
+          console.error(error);
+          throw error;
+        }
       },
     },
     babylon: {
@@ -105,14 +98,16 @@ export function MainContent({
           publicKey,
         });
       } else if (walletType === "custom" && selectedProtocol.id === "solana") {
-        const phantom = window.phantom?.solana;
+        if (!solFlareWallet) throw new Error("Failed to get Solflare");
 
-        if (!phantom) throw new Error("Failed to get phantom");
+        await solFlareWallet.connect();
 
-        const resp = await phantom.connect();
+        if (!solFlareWallet.publicKey) {
+          throw new Error("Failed to connect to Solflare");
+        }
 
         setWallet({
-          address: resp.publicKey.toString(),
+          address: solFlareWallet.publicKey.toString(),
           publicKey: "",
         });
       } else {
