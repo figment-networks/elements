@@ -77,7 +77,7 @@ return (
       >
         <div className="w-[480px] bg-[#F9F9F9] h-full flex-shrink-0">
           <div className="p-6">
-            <h2 className="text-base text-[#6F7471] mb-3 font-inter">
+            <h2 className="text-sm text-[#6F7471] mb-3 font-inter">
               CODE SNIPPET
             </h2>
             <div className="bg-gray-900 rounded-lg shadow-lg overflow-hidden">

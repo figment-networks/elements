@@ -74,7 +74,7 @@ export function Sidebar({
   }, [selectedProtocol.id]);
 
   return (
-    <div className="w-96 h-screen bg-[#e9e9e9] p-6 flex gap-8 flex-col">
+    <div className="w-96 h-screen bg-white p-6 flex gap-8 flex-col">
       <div className="mb-0">
         <FigmentLogo />
       </div>
@@ -124,7 +124,7 @@ export function Sidebar({
       </div>
 
       <div>
-        <h2 className="text-base text-[#3A3D3C] mb-2 font-inter">THEME</h2>
+        <h2 className="text-sm text-[#3A3D3C] mb-2 font-inter">THEME</h2>
         <ToggleGroup
           label=""
           value="figment"
