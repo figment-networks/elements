@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Staking } from "@figmentio/elements";
 import { Transaction } from "@solana/web3.js";
+import { Buffer } from "buffer";
 import { Protocol, Network } from "../types";
 import { CodePanel } from "./CodePanel";
 
