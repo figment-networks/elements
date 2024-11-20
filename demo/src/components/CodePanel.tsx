@@ -27,20 +27,17 @@ export function CodePanel({
 
   const [isCopied, setIsCopied] = React.useState(false);
 
-  const codeSnippet = `// StakingDemo.tsx
-import { Staking } from '@figment/elements';
+  const codeSnippet = `import { Staking } from '@figment/elements';
 
-const config = {
-  appId: 'd500...ece3',
-  protocol: '${selectedProtocol.id}',
-  network: '${selectedNetwork.id}',${
+return (
+  <Staking
+    appId="d500...ece3"
+    protocol="${selectedProtocol.id}"
+    network="${selectedNetwork.id}"${
     walletType === "custom" ? "\n  wallet: <CustomWalletConfig>" : ""
   }
-};
-
-export function StakingDemo(): JSX.Element {
-  return <Staking {...config} />;
-}`;
+  />
+)`;
 
   React.useEffect(() => {
     Prism.highlightAll();
@@ -97,7 +94,12 @@ export function StakingDemo(): JSX.Element {
                   )}
                 </button>
                 <pre className="p-6 text-gray-100 font-mono text-sm overflow-x-auto">
-                  <code className="language-typescript">{codeSnippet}</code>
+                  <code
+                    className="language-typescript"
+                    style={{ fontSize: "0.875rem", lineHeight: "1.25rem" }}
+                  >
+                    {codeSnippet}
+                  </code>
                 </pre>
               </div>
             </div>

@@ -120,7 +120,7 @@ export function MainContent({
   return (
     <div className="flex-1">
       <div className="flex h-screen">
-        <div className="flex-1 p-8 bg-white overflow-y-auto">
+        <div className="flex-1 p-8 bg-[#f5f5f5] overflow-y-auto">
           <div className="max-w-2xl mx-auto h-full flex flex-col">
             <div className="mb-8 text-center">
               <h1 className="text-4xl font-semibold mb-2">Figment Elements</h1>
@@ -128,7 +128,7 @@ export function MainContent({
                 UI components for embeddable staking
               </p>
             </div>
-            <div className="mx-auto w-[350px] h-[450px] overflow-hidden">
+            <div className="my-8 mx-auto w-[350px] h-[393px] overflow-hidden border border-[#ddd] rounded-md">
               {(walletType === "custom" ? wallet.address : true) && (
                 <Staking
                   isTestnetMode
