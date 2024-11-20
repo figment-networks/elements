@@ -1,19 +1,21 @@
-import React from 'react';
-import { Sidebar } from './components/Sidebar';
-import { MainContent } from './components/MainContent';
-import { Protocol, Network } from './types';
+import React from "react";
+import { Sidebar } from "./components/Sidebar";
+import { MainContent } from "./components/MainContent";
+import { Protocol, Network } from "./types";
 
 function App() {
-  const [primaryColor, setPrimaryColor] = React.useState('#004039');
-  const [secondaryColor, setSecondaryColor] = React.useState('#10B981');
-  const [walletType, setWalletType] = React.useState<'default' | 'custom'>('default');
+  const [primaryColor, setPrimaryColor] = React.useState("#004039");
+  const [secondaryColor, setSecondaryColor] = React.useState("#10B981");
+  const [walletType, setWalletType] = React.useState<"default" | "custom">(
+    "default"
+  );
   const [selectedProtocol, setSelectedProtocol] = React.useState<Protocol>({
-    name: 'ETH',
-    id: 'ethereum'
+    name: "ETH",
+    id: "ethereum",
   });
   const [selectedNetwork, setSelectedNetwork] = React.useState<Network>({
-    name: 'Mainnet',
-    id: 'mainnet'
+    name: "Mainnet",
+    id: "mainnet",
   });
 
   return (
