@@ -13,20 +13,10 @@ interface MainContentProps {
 }
 
 export function MainContent({
-  primaryColor,
-  secondaryColor,
   walletType,
   selectedProtocol,
   selectedNetwork,
 }: MainContentProps) {
-  console.log({
-    primaryColor,
-    secondaryColor,
-    walletType,
-    selectedProtocol,
-    selectedNetwork,
-  });
-
   const [wallet, setWallet] = useState<{
     address: string;
     publicKey: string;

@@ -62,7 +62,7 @@ export function Sidebar({
     {
       value: "custom",
       label: "Custom",
-      disabled: selectedProtocol.id === "ethereum",
+      disabled: true,
     },
   ] as const;
 
@@ -178,6 +178,7 @@ export function Sidebar({
           onChange={onWalletTypeChange}
           items={walletOptions}
           variant="horizontal"
+          showTooltip={true}
         />
         <p className="text-sm text-center italic mt-4 text-[#6F7471] font-inter px-2">
           {walletDescriptions[walletType]}
