@@ -116,6 +116,8 @@ export function ToggleGroup<T extends string>({
               <div className="absolute opacity-0 group-hover:opacity-100 transition-opacity duration-200 bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-gray-900 text-white text-xs rounded pointer-events-none whitespace-nowrap font-inter">
                 {item.value === "mainnet"
                   ? "Demo uses testnets only"
+                  : item.value === "custom"
+                  ? "Custom wallets coming soon"
                   : "Theming coming soon"}
                 <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-px border-4 border-transparent border-t-gray-900" />
               </div>
