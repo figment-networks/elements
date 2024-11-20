@@ -65,7 +65,7 @@ export function ToggleGroup<T extends string>({
       <h2 className="text-sm text-[#3A3D3C] mb-3 font-inter">{label}</h2>
       <div
         className={cn(
-          "flex items-center bg-white rounded-full",
+          "flex items-center bg-[#F9F9F9] rounded-full",
           variant === "vertical" && "flex-col items-stretch"
         )}
       >
