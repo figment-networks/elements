@@ -26,15 +26,15 @@ const networksByProtocol: Record<Protocol["id"], Network[]> = {
 
 const walletDescriptions: WalletDescription = {
   ethereum: {
-    default: "Uses WalletConnect",
+    default: "Uses Web3Modal",
     custom: "With own signing function.",
   },
   solana: {
-    default: "Uses WalletConnect",
+    default: "Uses Solana Wallet Adapter",
     custom: "With own signing function.",
   },
   babylon: {
-    default: "Uses WalletConnect",
+    default: "Uses OneKey Wallet",
     custom: "With own signing function.",
   },
 } as const;
