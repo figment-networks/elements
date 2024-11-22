@@ -134,7 +134,7 @@ export function Sidebar({
       </div>
 
       <div>
-        <h2 className="text-base text-[#3A3D3C] mb-2 font-inter">THEME</h2>
+        <h2 className="text-sm text-[#3A3D3C] mb-2 font-inter">THEME</h2>
         <ToggleGroup
           label=""
           value="figment"
