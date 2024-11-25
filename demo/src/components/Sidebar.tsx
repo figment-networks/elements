@@ -1,12 +1,12 @@
 import React from "react";
-import { Protocol, Network } from "../types";
+import { Protocol, Network, WalletDescription } from "../types";
 import { ToggleGroup } from "./ToggleGroup";
 import { FigmentLogo } from "./icons";
 
 const protocols: Protocol[] = [
   { name: "ETH", id: "ethereum" },
   { name: "SOL", id: "solana" },
-  { name: "BTC", id: "babylon" },
+  { name: "Babylon", id: "babylon" },
 ];
 
 const networksByProtocol: Record<Protocol["id"], Network[]> = {
@@ -24,9 +24,19 @@ const networksByProtocol: Record<Protocol["id"], Network[]> = {
   ],
 };
 
-const walletDescriptions = {
-  default: "WalletConnect, Metamask, Ledger Live, and more.",
-  custom: "Provide your own signing function.",
+const walletDescriptions: WalletDescription = {
+  ethereum: {
+    default: "Uses Web3Modal",
+    custom: "With own signing function.",
+  },
+  solana: {
+    default: "Uses Solana Wallet Adapter",
+    custom: "With own signing function.",
+  },
+  babylon: {
+    default: "Uses OneKey Wallet",
+    custom: "With own signing function.",
+  },
 } as const;
 
 const themeOptions = [
@@ -74,8 +84,8 @@ export function Sidebar({
   }, [selectedProtocol.id]);
 
   return (
-    <div className="w-96 h-screen bg-white p-6 flex gap-8 flex-col">
-      <div className="mb-0">
+    <div className="w-96 h-screen bg-[#e8e8e8] p-6 flex gap-8 flex-col">
+      <div className="mb-8">
         <FigmentLogo />
       </div>
 
@@ -118,8 +128,8 @@ export function Sidebar({
           variant="horizontal"
           showTooltip={true}
         />
-        <p className="text-sm text-center italic mt-4 text-[#6F7471] font-inter px-2">
-          {walletDescriptions[walletType]}
+        <p className="text-sm italic mt-4 text-[#6F7471] font-inter px-2">
+          {walletDescriptions[selectedProtocol.id][walletType]}
         </p>
       </div>
 
