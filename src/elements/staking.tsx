@@ -7,11 +7,10 @@ import {
 } from "./types";
 
 const Staking: React.FC<StakingProps> = ({
-  protocol = "ethereum",
+  protocol,
   network,
   appId,
   wallet,
-  isTestnetMode = false,
 }) => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [isIframeReady, setIsIframeReady] = useState(false);
@@ -122,7 +121,7 @@ const Staking: React.FC<StakingProps> = ({
 
   return (
     <iframe
-      src={`https://dapp.figment.io/elements/staking/${protocol}?isTestnetMode=${isTestnetMode}&isCustomWallet=${!!wallet}&dappToken=${appId}`}
+      src={`https://dapp.figment.io/${appId}/stake/${protocol}/${network}?isCustomWallet=${!!wallet}`}
       style={style}
       ref={iframeRef}
       onLoad={() => {

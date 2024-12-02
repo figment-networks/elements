@@ -46,7 +46,6 @@ export type ProtocolToWalletConfigMap = {
 type BaseStakingProps = {
   appId: string;
   protocol: keyof typeof Protocol;
-  isTestnetMode?: boolean;
 };
 
 // type StakingPropsWithWalletEthereum = BaseStakingProps & {
@@ -69,19 +68,19 @@ type StakingPropsWithWalletSolana = BaseStakingProps & {
 
 type StakingPropsWithoutWalletEthereum = BaseStakingProps & {
   protocol: "ethereum";
-  network?: ProtocolToNetworkMap[Protocol.ethereum];
+  network: ProtocolToNetworkMap[Protocol.ethereum];
   wallet?: undefined;
 };
 
 type StakingPropsWithoutWalletBabylon = BaseStakingProps & {
   protocol: "babylon";
-  network?: ProtocolToNetworkMap[Protocol.babylon];
+  network: ProtocolToNetworkMap[Protocol.babylon];
   wallet?: undefined;
 };
 
 type StakingPropsWithoutWalletSolana = BaseStakingProps & {
   protocol: "solana";
-  network?: ProtocolToNetworkMap[Protocol.solana];
+  network: ProtocolToNetworkMap[Protocol.solana];
   wallet?: undefined;
 };
 
