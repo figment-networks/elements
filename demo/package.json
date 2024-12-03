@@ -10,7 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@figmentio/elements": "^1.4.4",
+    "@figmentio/elements": "^2.0.0",
     "@solana/web3.js": "^1.95.4",
     "buffer": "^6.0.3",
     "lucide-react": "^0.344.0",

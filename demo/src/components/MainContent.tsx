@@ -120,7 +120,7 @@ export function MainContent({
   return (
     <div className="flex-1">
       <div className="flex h-screen">
-        <div className="flex-1 p-8 bg-[#EFEFEF] overflow-y-auto">
+        <div className="flex-1 p-8 bg-[#fff] overflow-y-auto">
           <div className="max-w-2xl mx-auto h-full flex flex-col">
             <div className="mb-8 text-center">
               <h1 className="text-4xl font-semibold mb-2">Figment Elements</h1>
@@ -131,7 +131,6 @@ export function MainContent({
             <div className="my-8 mx-auto w-[350px] h-[450px] overflow-hidden">
               {(walletType === "custom" ? wallet.address : true) && (
                 <Staking
-                  isTestnetMode
                   appId={import.meta.env.VITE_DAPP_TOKEN}
                   protocol={selectedProtocol.id as "solana"}
                   network={selectedNetwork.id as "mainnet"}
