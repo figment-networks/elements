@@ -73,7 +73,7 @@ export function Sidebar({
     {
       value: "custom",
       label: "Custom",
-      disabled: true,
+      disabled: selectedProtocol.id === "ethereum" ? true : false,
     },
   ] as const;
 
@@ -94,7 +94,10 @@ export function Sidebar({
         value={selectedProtocol.id}
         onChange={(id) => {
           const protocol = protocols.find((p) => p.id === id);
-          if (protocol) onProtocolSelect(protocol);
+          if (protocol) {
+            onProtocolSelect(protocol);
+            onWalletTypeChange("default");
+          }
         }}
         items={protocols.map((p) => ({
           value: p.id,
