@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@figmentio/elements": "^2.0.0",
-    "@solana/web3.js": "^1.95.4",
+    "@solana/web3.js": "1.98.2",
     "buffer": "^6.0.3",
     "lucide-react": "^0.344.0",
     "prismjs": "^1.29.0",
