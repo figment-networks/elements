@@ -11,6 +11,7 @@ const Staking: React.FC<StakingProps> = ({
   network,
   appId,
   wallet,
+  theme,
 }) => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [isIframeReady, setIsIframeReady] = useState(false);
@@ -119,9 +120,17 @@ const Staking: React.FC<StakingProps> = ({
     }
   };
 
+  const src = new URL(
+    `https://dapp.figment.io/${appId}/stake/${protocol}/${network}?isCustomWallet=${!!wallet}`
+  );
+
+  if (theme) {
+    src.searchParams.set("theme", theme);
+  }
+
   return (
     <iframe
-      src={`https://dapp.figment.io/${appId}/stake/${protocol}/${network}?isCustomWallet=${!!wallet}`}
+      src={src.toString()}
       style={style}
       ref={iframeRef}
       onLoad={() => {
