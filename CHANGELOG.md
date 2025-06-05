@@ -1,5 +1,11 @@
 # @figmentio/elements
 
+## 2.1.0
+
+### Minor Changes
+
+- Accepting a new theme prop for specifying which theme to use, either "light" or "dark".
+
 ## 2.0.0
 
 ### Major Changes
