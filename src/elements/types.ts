@@ -46,6 +46,7 @@ export type ProtocolToWalletConfigMap = {
 type BaseStakingProps = {
   appId: string;
   protocol: keyof typeof Protocol;
+  theme?: "light" | "dark";
 };
 
 // type StakingPropsWithWalletEthereum = BaseStakingProps & {

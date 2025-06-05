@@ -1,4 +1,4 @@
-name: Version Update Check
+name: Changelog Update Check
 
 on:
   pull_request:
@@ -12,22 +12,29 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  version_update_check:
-    name: Check for package.json version update
+  changelog_update_check:
+    name: Check for CHANGELOG.md update
     runs-on: ubuntu-latest
     if: ${{!contains(github.event.pull_request.title, '[skip-version-check]')}}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - uses: JiPaix/package-json-updated-action@v1.0.3
-        id: version-updated
+      - name: Check for changes
+        id: filter
+        uses: dorny/paths-filter@v3
         with:
-          path: package.json
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          filters: |
+            code:
+              - 'src/**'
+            changelog:
+              - 'CHANGELOG.md'
+
       - run: echo ${{github.event.pull_request.title}}
 
-      - run: echo "Elements code changed but package.json version not updated. Please run pnpm bump-version, or skip this check by adding [skip-version-check] to the PR title and re-pushing." && exit 1
-        if: ${{steps.version-updated.outputs.has-updated == 'false'}}
+      - name: Fail if code changed but changelog not updated
+        if: steps.filter.outputs.code == 'true' && steps.filter.outputs.changelog != 'true'
+        run: |
+          echo "Elements code changed but CHANGELOG.md not updated. Please run pnpm bump-version, or skip this check by adding [skip-version-check] to the PR title and re-pushing."
+          exit 1
