@@ -11,12 +11,14 @@ interface CodePanelProps {
   selectedProtocol: Protocol;
   selectedNetwork: Network;
   walletType: string;
+  theme: "light" | "dark" | "system";
 }
 
 export function CodePanel({
   selectedProtocol,
   selectedNetwork,
   walletType,
+  theme,
 }: CodePanelProps) {
   const { width } = useWindowSize();
   const [isOpen, setIsOpen] = React.useState(width >= 1200);
@@ -35,7 +37,7 @@ return (
     protocol="${selectedProtocol.id}"
     network="${selectedNetwork.id}"${
     walletType === "custom" ? "\n  wallet: <CustomWalletConfig>" : ""
-  }
+  }${theme === "system" ? "" : `\n    theme="${theme}"`}
   />
 )`;
 

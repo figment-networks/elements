@@ -40,9 +40,9 @@ const walletDescriptions: WalletDescription = {
 } as const;
 
 const themeOptions = [
-  { value: "figment", label: "Figment", disabled: true },
-  { value: "basic", label: "Basic", disabled: true },
-  { value: "protocol", label: "Protocol", disabled: true },
+  { value: "system", label: "System" },
+  { value: "light", label: "Light" },
+  { value: "dark", label: "Dark" },
 ] as const;
 
 interface SidebarProps {
@@ -56,6 +56,8 @@ interface SidebarProps {
   onProtocolSelect: (protocol: Protocol) => void;
   selectedNetwork: Network;
   onNetworkSelect: (network: Network) => void;
+  theme: "light" | "dark" | "system";
+  onThemeChange: (theme: "light" | "dark" | "system") => void;
 }
 
 export function Sidebar({
@@ -65,6 +67,8 @@ export function Sidebar({
   onProtocolSelect,
   selectedNetwork,
   onNetworkSelect,
+  theme,
+  onThemeChange,
 }: SidebarProps) {
   const networks = networksByProtocol[selectedProtocol.id];
 
@@ -137,11 +141,10 @@ export function Sidebar({
       </div>
 
       <div>
-        <h2 className="text-sm text-[#3A3D3C] mb-2 font-inter">THEME</h2>
         <ToggleGroup
-          label=""
-          value="figment"
-          onChange={() => {}}
+          label="THEME"
+          value={theme}
+          onChange={onThemeChange}
           items={themeOptions}
           variant="horizontal"
           showTooltip={true}

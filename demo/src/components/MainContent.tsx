@@ -11,12 +11,14 @@ interface MainContentProps {
   walletType: "default" | "custom";
   selectedProtocol: Protocol;
   selectedNetwork: Network;
+  theme: "light" | "dark" | "system";
 }
 
 export function MainContent({
   walletType,
   selectedProtocol,
   selectedNetwork,
+  theme,
 }: MainContentProps) {
   const [wallet, setWallet] = useState<{
     address: string;
@@ -141,6 +143,7 @@ export function MainContent({
                         ]
                       : undefined
                   }
+                  theme={theme === "system" ? undefined : theme}
                 />
               )}
             </div>
@@ -151,6 +154,7 @@ export function MainContent({
           walletType={walletType}
           selectedProtocol={selectedProtocol}
           selectedNetwork={selectedNetwork}
+          theme={theme}
         />
       </div>
     </div>

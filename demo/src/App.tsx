@@ -17,6 +17,9 @@ function App() {
     name: "Mainnet",
     id: "mainnet",
   });
+  const [theme, setTheme] = React.useState<"light" | "dark" | "system">(
+    "system"
+  );
 
   return (
     <div className="flex min-h-screen bg-gray-50">
@@ -31,6 +34,8 @@ function App() {
         onProtocolSelect={setSelectedProtocol}
         selectedNetwork={selectedNetwork}
         onNetworkSelect={setSelectedNetwork}
+        theme={theme}
+        onThemeChange={setTheme}
       />
       <MainContent
         primaryColor={primaryColor}
@@ -38,6 +43,7 @@ function App() {
         walletType={walletType}
         selectedProtocol={selectedProtocol}
         selectedNetwork={selectedNetwork}
+        theme={theme}
       />
     </div>
   );
