@@ -9,10 +9,10 @@ interface ToggleGroupProps<T extends string> {
     value: T;
     label: string;
     disabled?: boolean;
+    tooltip?: string;
   }[];
   label: string;
   variant?: "vertical" | "horizontal";
-  showTooltip?: boolean;
 }
 
 const getIcon = (value: string) => {
@@ -58,7 +58,6 @@ export function ToggleGroup<T extends string>({
   items,
   label,
   variant = "vertical",
-  showTooltip = false,
 }: ToggleGroupProps<T>) {
   return (
     <div className="">
@@ -70,17 +69,7 @@ export function ToggleGroup<T extends string>({
         )}
       >
         {items.map((item) => (
-          <div
-            key={item.value}
-            className="relative group flex-1"
-            data-tooltip={
-              showTooltip && item.disabled
-                ? item.value === "mainnet"
-                  ? "Demo uses testnets only"
-                  : "Theming coming soon"
-                : undefined
-            }
-          >
+          <div key={item.value} className="relative group flex-1">
             <button
               onClick={() => !item.disabled && onChange(item.value)}
               disabled={item.disabled}
@@ -112,13 +101,9 @@ export function ToggleGroup<T extends string>({
               )}
               <span>{item.label}</span>
             </button>
-            {showTooltip && item.disabled && (
+            {item.disabled && (
               <div className="absolute opacity-0 group-hover:opacity-100 transition-opacity duration-200 bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-gray-900 text-white text-xs rounded pointer-events-none whitespace-nowrap font-inter">
-                {item.value === "mainnet"
-                  ? "Demo uses testnets only"
-                  : item.value === "custom"
-                  ? "Custom wallets coming soon"
-                  : "Theming coming soon"}
+                {item.tooltip}
                 <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-px border-4 border-transparent border-t-gray-900" />
               </div>
             )}

@@ -6,7 +6,12 @@ import { FigmentLogo } from "./icons";
 const protocols: Protocol[] = [
   { name: "ETH", id: "ethereum" },
   { name: "SOL", id: "solana" },
-  { name: "Babylon", id: "babylon" },
+  {
+    name: "Babylon",
+    id: "babylon",
+    disabled: true,
+    tooltip: "Protocol temporarily disabled",
+  },
 ];
 
 const networksByProtocol: Record<Protocol["id"], Network[]> = {
@@ -78,6 +83,7 @@ export function Sidebar({
       value: "custom",
       label: "Custom",
       disabled: selectedProtocol.id === "ethereum" ? true : false,
+      tooltip: "Ethereum custom wallets coming soon",
     },
   ] as const;
 
@@ -106,6 +112,8 @@ export function Sidebar({
         items={protocols.map((p) => ({
           value: p.id,
           label: p.name,
+          disabled: p.disabled,
+          tooltip: p.tooltip,
         }))}
         variant="horizontal"
       />
@@ -121,9 +129,9 @@ export function Sidebar({
           value: n.id,
           label: n.name,
           disabled: n.disabled,
+          tooltip: "Demo uses testnets only",
         }))}
         variant="horizontal"
-        showTooltip={true}
       />
 
       <div className="">
@@ -133,7 +141,6 @@ export function Sidebar({
           onChange={onWalletTypeChange}
           items={walletOptions}
           variant="horizontal"
-          showTooltip={true}
         />
         <p className="text-sm italic mt-4 text-[#6F7471] font-inter px-2">
           {walletDescriptions[selectedProtocol.id][walletType]}
@@ -147,7 +154,6 @@ export function Sidebar({
           onChange={onThemeChange}
           items={themeOptions}
           variant="horizontal"
-          showTooltip={true}
         />
       </div>
     </div>

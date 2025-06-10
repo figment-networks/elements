@@ -1,6 +1,8 @@
 export interface Protocol {
   name: string;
   id: "ethereum" | "solana" | "babylon";
+  disabled?: boolean;
+  tooltip?: string;
 }
 
 export interface Network {
