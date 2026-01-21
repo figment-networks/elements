@@ -13,14 +13,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744
 
-      - uses: pnpm/action-setup@v2.0.1
+      - uses: pnpm/action-setup@646cdf48217256a3d0b80361c5a50727664284f2
         with:
           version: 8.7.6
 
       - name: Set Up Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@3235b876344d2a9aa001b8d1453c930bba69e610
         with:
           node-version: 20
           cache: "pnpm"
@@ -31,7 +31,7 @@ jobs:
 
       - name: Publish to NPM
         id: changesets
-        uses: changesets/action@v1
+        uses: changesets/action@ce079ea084e08a340947ed4d6ecedb2433c8f293
         with:
           publish: pnpm release
         env:
@@ -42,7 +42,7 @@ jobs:
       # Add single retry if first attempt fails
       - name: Retry Release on Failure
         if: steps.changesets.outcome == 'failure'
-        uses: changesets/action@v1
+        uses: changesets/action@ce079ea084e08a340947ed4d6ecedb2433c8f293
         with:
           publish: pnpm release
         env:
