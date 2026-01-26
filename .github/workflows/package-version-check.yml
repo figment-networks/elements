@@ -31,8 +31,6 @@ jobs:
             changelog:
               - 'CHANGELOG.md'
 
-      - run: echo ${{github.event.pull_request.title}}
-
       - name: Fail if code changed but changelog not updated
         if: steps.filter.outputs.code == 'true' && steps.filter.outputs.changelog != 'true'
         run: |
