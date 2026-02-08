@@ -29,7 +29,7 @@ const getIcon = (value: string) => {
       return <SolanaIcon className="w-5 h-5" />;
     case "mainnet":
       return <GlobeIcon className="w-4 h-4" />;
-    case "holesky":
+    case "hoodi":
     case "devnet":
     case "signet":
       return <TestTubeIcon className="w-4 h-4 -rotate-45" />;
@@ -46,7 +46,7 @@ const shouldShowIcon = (value: string) => {
     "babylon",
     "solana",
     "mainnet",
-    "holesky",
+    "hoodi",
     "devnet",
     "signet",
   ].includes(value);

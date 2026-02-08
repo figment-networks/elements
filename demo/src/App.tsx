@@ -14,8 +14,8 @@ function App() {
     id: "ethereum",
   });
   const [selectedNetwork, setSelectedNetwork] = React.useState<Network>({
-    name: "Mainnet",
-    id: "mainnet",
+    name: "Hoodi",
+    id: "hoodi",
   });
   const [theme, setTheme] = React.useState<"light" | "dark" | "system">(
     "system"

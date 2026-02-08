@@ -135,7 +135,7 @@ export function MainContent({
                 <Staking
                   appId={import.meta.env.VITE_DAPP_TOKEN}
                   protocol={selectedProtocol.id as "solana"}
-                  network={selectedNetwork.id as "mainnet"}
+                  network={selectedNetwork.id as "mainnet" | "hoodi"}
                   wallet={
                     walletType === "custom"
                       ? customWalletConfigMap[
