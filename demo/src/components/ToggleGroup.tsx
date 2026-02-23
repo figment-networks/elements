@@ -29,7 +29,7 @@ const getIcon = (value: string) => {
       return <SolanaIcon className="w-5 h-5" />;
     case "mainnet":
       return <GlobeIcon className="w-4 h-4" />;
-    case "holesky":
+    case "hoodi":
     case "devnet":
     case "signet":
       return <TestTubeIcon className="w-4 h-4 -rotate-45" />;
@@ -46,7 +46,7 @@ const shouldShowIcon = (value: string) => {
     "babylon",
     "solana",
     "mainnet",
-    "holesky",
+    "hoodi",
     "devnet",
     "signet",
   ].includes(value);
@@ -65,7 +65,7 @@ export function ToggleGroup<T extends string>({
       <div
         className={cn(
           "flex items-center bg-[#F9F9F9] rounded-full",
-          variant === "vertical" && "flex-col items-stretch"
+          variant === "vertical" && "flex-col items-stretch",
         )}
       >
         {items.map((item) => (
@@ -81,7 +81,7 @@ export function ToggleGroup<T extends string>({
                   : "text-[#6E938E] hover:text-[#004039]",
                 item.disabled &&
                   "opacity-50 cursor-not-allowed hover:text-[#9DB5B2]",
-                shouldShowIcon(item.value) && "text-current"
+                shouldShowIcon(item.value) && "text-current",
               )}
             >
               {shouldShowIcon(item.value) && (
@@ -93,7 +93,7 @@ export function ToggleGroup<T extends string>({
                       item.value === "mainnet" ||
                       item.value.includes("net")
                       ? "text-current"
-                      : ""
+                      : "",
                   )}
                 >
                   {getIcon(item.value)}

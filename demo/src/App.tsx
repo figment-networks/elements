@@ -7,18 +7,18 @@ function App() {
   const [primaryColor, setPrimaryColor] = React.useState("#004039");
   const [secondaryColor, setSecondaryColor] = React.useState("#10B981");
   const [walletType, setWalletType] = React.useState<"default" | "custom">(
-    "default"
+    "default",
   );
   const [selectedProtocol, setSelectedProtocol] = React.useState<Protocol>({
     name: "ETH",
     id: "ethereum",
   });
   const [selectedNetwork, setSelectedNetwork] = React.useState<Network>({
-    name: "Mainnet",
-    id: "mainnet",
+    name: "Hoodi",
+    id: "hoodi",
   });
   const [theme, setTheme] = React.useState<"light" | "dark" | "system">(
-    "system"
+    "system",
   );
 
   return (

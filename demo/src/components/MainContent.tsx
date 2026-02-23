@@ -39,11 +39,11 @@ export function MainContent({
         const encodedMessage = new TextEncoder().encode(message);
         const signedMessage = await provider.signMessage(
           encodedMessage,
-          "utf8"
+          "utf8",
         );
 
         const signature = Buffer.from(signedMessage.signature).toString(
-          "base64"
+          "base64",
         );
 
         if (!signature) throw new Error("Failed to sign message");
@@ -70,7 +70,7 @@ export function MainContent({
       signMessage: async (message: string) => {
         const signature = await window?.tomo_btc?.signMessage(
           message,
-          "bip322-simple"
+          "bip322-simple",
         );
         if (!signature) throw new Error("Failed to sign message");
         return signature;
@@ -130,7 +130,7 @@ export function MainContent({
                 UI components for embeddable staking
               </p>
             </div>
-            <div className="my-8 mx-auto w-[350px] h-[450px] overflow-hidden">
+            <div className="my-8 mx-auto w-[350px] h-[490px] overflow-hidden">
               {(walletType === "custom" ? wallet.address : true) && (
                 <Staking
                   appId={import.meta.env.VITE_DAPP_TOKEN}
