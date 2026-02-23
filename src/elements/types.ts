@@ -6,7 +6,7 @@ enum Protocol {
 
 enum EthereumNetwork {
   mainnet = "mainnet",
-  holesky = "holesky",
+  hoodi = "hoodi",
 }
 
 enum BabylonNetwork {
