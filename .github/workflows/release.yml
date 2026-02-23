@@ -17,7 +17,7 @@ jobs:
 
       - uses: pnpm/action-setup@646cdf48217256a3d0b80361c5a50727664284f2
         with:
-          version: 8.7.6
+          version: 9.15.5
 
       - name: Set Up Node
         uses: actions/setup-node@3235b876344d2a9aa001b8d1453c930bba69e610
