@@ -10,8 +10,8 @@ on:
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 permissions:
-  contents: read
-  id-token: write # Required for npm trusted publishing (OIDC)
+  contents: write  # Push tags (and version bump commits) after publish
+  id-token: write  # Required for npm trusted publishing (OIDC)
 
 jobs:
   release:
