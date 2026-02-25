@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@figmentio/elements':
-        specifier: ^2.1.0
-        version: 2.1.0
+        specifier: ^2.1.1
+        version: 2.1.1
       '@solana/web3.js':
         specifier: 1.98.2
         version: 1.98.2(bufferutil@4.0.9)(typescript@5.7.2)(utf-8-validate@5.0.10)
@@ -358,8 +358,8 @@ packages:
     resolution: {integrity: sha512-43/qtrDUokr7LJqoF2c3+RInu/t4zfrpYdoSDfYyhg52rwLV6TnOvdG4fXm7IkSB3wErkcmJS9iEhjVtOSEjjA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@figmentio/elements@2.1.0':
-    resolution: {integrity: sha512-exj4Em55lPHOga4y8wmYd8T0b1BtJnGrLltimx/18y1nlVT8S819qcF48rznoJPBQjLnc+g+/YxOOXxKAjtMjw==}
+  '@figmentio/elements@2.1.1':
+    resolution: {integrity: sha512-ws0JAG8BiTwFRPIyFR9zSbXq0vQT2PzMYS5zHF+dYh0yqT+RBJmFLQFdCFpJgbRkIeQmhTMS8hBKJ3o8gRVqrQ==}
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -1870,7 +1870,7 @@ snapshots:
       '@eslint/core': 0.17.0
       levn: 0.4.1
 
-  '@figmentio/elements@2.1.0': {}
+  '@figmentio/elements@2.1.1': {}
 
   '@humanfs/core@0.19.1': {}
 

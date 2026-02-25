@@ -16,7 +16,7 @@ const protocols: Protocol[] = [
 
 const networksByProtocol: Record<Protocol["id"], Network[]> = {
   ethereum: [
-    { name: "Holesky", id: "holesky" },
+    { name: "Hoodi", id: "hoodi" },
     { name: "Mainnet", id: "mainnet", disabled: true },
   ],
   solana: [
