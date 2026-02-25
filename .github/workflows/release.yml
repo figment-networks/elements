@@ -5,11 +5,13 @@ on:
     branches:
       - main
 
+  workflow_dispatch:
+
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 permissions:
-  contents: read
-  id-token: write # Required for npm trusted publishing (OIDC)
+  contents: write  # Push tags (and version bump commits) after publish
+  id-token: write  # Required for npm trusted publishing (OIDC)
 
 jobs:
   release:
@@ -33,6 +35,17 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Get npm token via OIDC
+        id: npm-token
+        run: |
+          OIDC_TOKEN=$(curl -sS -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
+            "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=npm:registry.npmjs.org" | jq -r '.value')
+          NPM_TOKEN=$(curl -sS -X POST "https://registry.npmjs.org/-/npm/v1/oidc/token/exchange/package/@figmentio%2felements" \
+            -H "Authorization: Bearer $OIDC_TOKEN" \
+            -H "Content-Type: application/json" | jq -r '.token')
+          echo "NPM_TOKEN=$NPM_TOKEN" >> "$GITHUB_ENV"
+          echo "::add-mask::$NPM_TOKEN"
+
       - name: Publish to NPM
         id: changesets
         uses: changesets/action@ce079ea084e08a340947ed4d6ecedb2433c8f293
@@ -40,6 +53,7 @@ jobs:
           publish: pnpm release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ env.NPM_TOKEN }}
         continue-on-error: true
 
       # Add single retry if first attempt fails
@@ -50,6 +64,7 @@ jobs:
           publish: pnpm release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ env.NPM_TOKEN }}
 
       # - name: Send a Slack notification if a publish happens
       #   if: steps.changesets.outputs.published == 'true'
