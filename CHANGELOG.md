@@ -1,5 +1,11 @@
 # @figmentio/elements
 
+## 2.1.2
+
+### Patch Changes
+
+- Fix security vulnerabilities in rollup and transitive dependencies
+
 ## 2.1.1
 
 ### Patch Changes
