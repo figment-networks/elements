@@ -1,10 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { style } from "./style";
-import {
-  BabylonCustomWalletConfig,
-  PostMessageType,
-  StakingProps,
-} from "./types";
+import { PostMessageType, StakingProps } from "./types";
 
 const Staking: React.FC<StakingProps> = ({
   protocol,
@@ -90,11 +86,6 @@ const Staking: React.FC<StakingProps> = ({
       const iframeWalletConfig = JSON.stringify({
         address: wallet.address,
         network,
-        ...(protocol === "babylon"
-          ? {
-              publicKey: (wallet as BabylonCustomWalletConfig).publicKey,
-            }
-          : {}),
       });
 
       sendMessageToIframe({
@@ -102,14 +93,7 @@ const Staking: React.FC<StakingProps> = ({
         walletConfig: iframeWalletConfig,
       });
     }
-  }, [
-    isIframeReady,
-    wallet,
-    wallet?.address,
-    (wallet as BabylonCustomWalletConfig)?.publicKey,
-    network,
-    protocol,
-  ]);
+  }, [isIframeReady, wallet, wallet?.address, network, protocol]);
 
   const sendMessageToIframe = (message: any) => {
     if (iframeRef.current && iframeRef.current.contentWindow) {

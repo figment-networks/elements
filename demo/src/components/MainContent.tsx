@@ -22,10 +22,8 @@ export function MainContent({
 }: MainContentProps) {
   const [wallet, setWallet] = useState<{
     address: string;
-    publicKey: string;
   }>({
     address: "",
-    publicKey: "",
   });
 
   const customWalletConfigMap = {
@@ -64,40 +62,11 @@ export function MainContent({
         return signature;
       },
     },
-    babylon: {
-      address: wallet.address,
-      publicKey: wallet?.publicKey,
-      signMessage: async (message: string) => {
-        const signature = await window?.tomo_btc?.signMessage(
-          message,
-          "bip322-simple",
-        );
-        if (!signature) throw new Error("Failed to sign message");
-        return signature;
-      },
-      signTransaction: async (transaction: string) => {
-        const signedTx = await window?.tomo_btc?.signPsbt(transaction);
-        if (!signedTx) throw new Error("Failed to sign transaction");
-        return signedTx;
-      },
-    },
   };
 
   useEffect(() => {
     const fetchWallet = async () => {
-      if (walletType === "custom" && selectedProtocol.id === "babylon") {
-        const tomo = window.tomo_btc;
-
-        if (!tomo) throw new Error("Failed to get tomo");
-
-        const addresses = await tomo.requestAccounts();
-        const publicKey = await tomo.getPublicKey();
-
-        setWallet({
-          address: addresses[0],
-          publicKey,
-        });
-      } else if (walletType === "custom" && selectedProtocol.id === "solana") {
+      if (walletType === "custom" && selectedProtocol.id === "solana") {
         const phantom = window.phantom?.solana;
 
         if (!phantom) throw new Error("Failed to get phantom");
@@ -106,12 +75,10 @@ export function MainContent({
 
         setWallet({
           address: resp.publicKey.toString(),
-          publicKey: "",
         });
       } else {
         setWallet({
           address: "",
-          publicKey: "",
         });
       }
     };
