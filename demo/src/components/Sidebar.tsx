@@ -6,12 +6,6 @@ import { FigmentLogo } from "./icons";
 const protocols: Protocol[] = [
   { name: "ETH", id: "ethereum" },
   { name: "SOL", id: "solana" },
-  {
-    name: "Babylon",
-    id: "babylon",
-    disabled: true,
-    tooltip: "Protocol temporarily disabled",
-  },
 ];
 
 const networksByProtocol: Record<Protocol["id"], Network[]> = {
@@ -23,10 +17,6 @@ const networksByProtocol: Record<Protocol["id"], Network[]> = {
     { name: "Devnet", id: "devnet" },
     { name: "Mainnet", id: "mainnet", disabled: true },
   ],
-  babylon: [
-    { name: "Signet", id: "signet" },
-    { name: "Mainnet", id: "mainnet", disabled: true },
-  ],
 };
 
 const walletDescriptions: WalletDescription = {
@@ -36,10 +26,6 @@ const walletDescriptions: WalletDescription = {
   },
   solana: {
     default: "Uses Solana Wallet Adapter",
-    custom: "With own signing function.",
-  },
-  babylon: {
-    default: "Uses OneKey Wallet",
     custom: "With own signing function.",
   },
 } as const;

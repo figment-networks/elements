@@ -1,6 +1,5 @@
 enum Protocol {
   ethereum = "ethereum",
-  babylon = "babylon",
   solana = "solana",
 }
 
@@ -9,22 +8,10 @@ enum EthereumNetwork {
   hoodi = "hoodi",
 }
 
-enum BabylonNetwork {
-  mainnet = "mainnet",
-  signet = "signet",
-}
-
 enum SolanaNetwork {
   mainnet = "mainnet",
   devnet = "devnet",
 }
-
-export type BabylonCustomWalletConfig = {
-  address: string;
-  publicKey: string;
-  signTransaction: (transaction: string) => Promise<string>;
-  signMessage: (message: string) => Promise<string>;
-};
 
 export type SolanaCustomWalletConfig = {
   address: string;
@@ -34,12 +21,10 @@ export type SolanaCustomWalletConfig = {
 
 type ProtocolToNetworkMap = {
   [Protocol.ethereum]: keyof typeof EthereumNetwork;
-  [Protocol.babylon]: keyof typeof BabylonNetwork;
   [Protocol.solana]: keyof typeof SolanaNetwork;
 };
 
 export type ProtocolToWalletConfigMap = {
-  [Protocol.babylon]: BabylonCustomWalletConfig;
   [Protocol.solana]: SolanaCustomWalletConfig;
 };
 
@@ -55,12 +40,6 @@ type BaseStakingProps = {
 //   wallet: CustomWalletConfig;
 // };
 
-type StakingPropsWithWalletBabylon = BaseStakingProps & {
-  protocol: "babylon";
-  network: ProtocolToNetworkMap[Protocol.babylon];
-  wallet: ProtocolToWalletConfigMap[Protocol.babylon];
-};
-
 type StakingPropsWithWalletSolana = BaseStakingProps & {
   protocol: "solana";
   network: ProtocolToNetworkMap[Protocol.solana];
@@ -73,12 +52,6 @@ type StakingPropsWithoutWalletEthereum = BaseStakingProps & {
   wallet?: undefined;
 };
 
-type StakingPropsWithoutWalletBabylon = BaseStakingProps & {
-  protocol: "babylon";
-  network: ProtocolToNetworkMap[Protocol.babylon];
-  wallet?: undefined;
-};
-
 type StakingPropsWithoutWalletSolana = BaseStakingProps & {
   protocol: "solana";
   network: ProtocolToNetworkMap[Protocol.solana];
@@ -88,10 +61,8 @@ type StakingPropsWithoutWalletSolana = BaseStakingProps & {
 export type StakingProps =
   // Once we enable custom wallets for Ethereum, we can uncomment this
   // | StakingPropsWithWalletEthereum
-  | StakingPropsWithWalletBabylon
   | StakingPropsWithWalletSolana
   | StakingPropsWithoutWalletEthereum
-  | StakingPropsWithoutWalletBabylon
   | StakingPropsWithoutWalletSolana;
 
 export enum PostMessageType {

@@ -1,5 +1,11 @@
 # @figmentio/elements
 
+## 2.2.0
+
+### Minor Changes
+
+- Removed Babylon support
+
 ## 2.1.2
 
 ### Patch Changes

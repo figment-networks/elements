@@ -1,6 +1,6 @@
 import { cn } from "../utils";
 import { Wallet, Code2, TestTubeIcon, GlobeIcon } from "lucide-react";
-import { EthereumIcon, SolanaIcon, BitcoinIcon } from "./icons";
+import { EthereumIcon, SolanaIcon } from "./icons";
 
 interface ToggleGroupProps<T extends string> {
   value: T | null;
@@ -23,8 +23,6 @@ const getIcon = (value: string) => {
       return <Code2 className="w-4 h-4" />;
     case "ethereum":
       return <EthereumIcon className="w-5 h-5" />;
-    case "babylon":
-      return <BitcoinIcon className="w-5 h-5" />;
     case "solana":
       return <SolanaIcon className="w-5 h-5" />;
     case "mainnet":
@@ -43,12 +41,10 @@ const shouldShowIcon = (value: string) => {
     "default",
     "custom",
     "ethereum",
-    "babylon",
     "solana",
     "mainnet",
     "hoodi",
     "devnet",
-    "signet",
   ].includes(value);
 };
 
