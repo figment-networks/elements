@@ -22,6 +22,12 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "pnpm": {
+    "overrides": {
+      "picomatch@<2.3.2": "2.3.2",
+      "picomatch@>=4.0.0 <4.0.4": "4.0.4"
+    }
+  },
   "devDependencies": {
     "@babel/core": "~7.24.7",
     "@babel/preset-react": "~7.24.7",
