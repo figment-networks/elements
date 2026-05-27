@@ -9,6 +9,7 @@ overrides:
   picomatch@>=4.0.0 <4.0.4: 4.0.4
   fast-uri: '>=3.1.2'
   brace-expansion@>=2.0.0 <2.0.3: 2.0.3
+  serialize-javascript@<7.0.5: 7.0.5
 
 importers:
 
@@ -1160,8 +1161,8 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
 
-  serialize-javascript@7.0.4:
-    resolution: {integrity: sha512-DuGdB+Po43Q5Jxwpzt1lhyFSYKryqoNjQSA9M92tyw0lyHIOur+XCalOUe0KTJpyqzT8+fQ5A0Jf7vCx/NKmIg==}
+  serialize-javascript@7.0.5:
+    resolution: {integrity: sha512-F4LcB0UqUl1zErq+1nYEEzSHJnIwb3AF2XWB94b+afhrekOUijwooAYqFyRbjYkm2PAKBabx6oYv/xDxNi8IBw==}
     engines: {node: '>=20.0.0'}
 
   shebang-command@2.0.0:
@@ -1721,7 +1722,7 @@ snapshots:
 
   '@rollup/plugin-terser@1.0.0(rollup@4.59.0)':
     dependencies:
-      serialize-javascript: 7.0.4
+      serialize-javascript: 7.0.5
       smob: 1.6.1
       terser: 5.46.0
     optionalDependencies:
@@ -2463,7 +2464,7 @@ snapshots:
 
   semver@7.7.3: {}
 
-  serialize-javascript@7.0.4: {}
+  serialize-javascript@7.0.5: {}
 
   shebang-command@2.0.0:
     dependencies:
